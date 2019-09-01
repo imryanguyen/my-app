@@ -10,7 +10,8 @@ class App extends Component{
       { name: 'Manu', age: 25 },
       { name: 'Stephanie', age: 23 }
     ],
-    otherState: 'some other values'
+    otherState: 'some other values',
+    showPersons: false
   }
 
   switchNameHandler = () => {
@@ -35,6 +36,10 @@ class App extends Component{
     })
   }
 
+  togglePersonHandler = () => {
+
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -50,17 +55,19 @@ class App extends Component{
         <p>but i really lobe u tamachan :3</p>
         <button 
           style={style}
-          onClick={this.switchNameHandler}>Switch name!</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          
-        />
-        <Person 
-          name={this.state.persons[1].name} 
-          age='9'
-          changed={this.nameChangeHandler}
-        > My hobbies: Racing </Person>
+          onClick={this.togglePersonHandler}>Switch name!</button>
+        { 
+          this.state.showPersons ?
+            <div>
+            <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age}/>
+            <Person 
+              name={this.state.persons[1].name} 
+              age='9'
+              changed={this.nameChangeHandler}> My hobbies: Racing </Person>
+            </div> : null
+        }
       </div>
       
     );
