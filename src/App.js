@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import './Person.css';
 import Person from './Person';
-import { O_DIRECT } from 'constants';
 
 class App extends Component{
   state = {
@@ -40,7 +39,7 @@ class App extends Component{
     });
 
     const person = {
-      ...this.state.persons[personIndex];
+      ...this.state.persons[personIndex]
     };
 
     person.name = event.target.value;
@@ -48,9 +47,7 @@ class App extends Component{
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState( {
-      persons: persons
-    });
+    this.setState( {persons: persons} );
   }
 
   togglePersonHandler = () => {
@@ -78,7 +75,7 @@ class App extends Component{
               name={person.name}
               age={person.age}  
               key={person.id}
-              change={() => this.nameChangeHandler(event, person.id)} />
+              changed={(event) => this.nameChangeHandler(event, person.id)} />
           })}     
         </div> 
       );
