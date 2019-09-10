@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import './App.css';
 import './Person.css';
 import Person from './Person';
+import { O_DIRECT } from 'constants';
 
 class App extends Component{
   state = {
     persons: [
-      { name: 'Max', age: 28 },
-      { name: 'Manu', age: 25 },
-      { name: 'Stephanie', age: 23 }
+      { id: 121, name: 'Max', age: 28 },
+      { id: 122, name: 'Manu', age: 25 },
+      { id: 123, name: 'Stephanie', age: 23 }
     ],
     otherState: 'some other values',
     showPersons: false
@@ -27,19 +28,29 @@ class App extends Component{
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
   }
 
-  nameChangeHandler = (event) => {
+  nameChangeHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex];
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState( {
-      persons: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 29},
-        { name: 'Stephanie', age: 23}
-      ]
-    })
+      persons: persons
+    });
   }
 
   togglePersonHandler = () => {
@@ -65,7 +76,9 @@ class App extends Component{
             return <Person
               click={() => this.deletePersonHandler(index)} 
               name={person.name}
-              age={person.age}  />
+              age={person.age}  
+              key={person.id}
+              change={() => this.nameChangeHandler(event, person.id)} />
           })}     
         </div> 
       );
