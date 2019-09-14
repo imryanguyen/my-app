@@ -105,7 +105,7 @@ class App extends Component{
       <StyleRoot>
       <div className="App">
         <h1>i lobe u tamachan</h1>
-        <p className={classes.join(' ')}>but i really lobe u tamachan :3</p>
+        <p className={classes.join(' ')}>but i really lobe u tamachan</p>
         <button 
           style={style}
           onClick={this.togglePersonHandler}>Switch name!</button>
