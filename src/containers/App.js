@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import './Person.css';
-import Person from './Person';
+import Person from '../components/Person';
 import Radium, {StyleRoot} from 'radium'
 
 class App extends Component{
