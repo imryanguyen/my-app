@@ -7,6 +7,7 @@ const person = (props) => {
       width: '450px'
     }
   };
+  
   return (
     <div className='Person' style={style}>
       <p onClick={props.click}> I'm {props.name} and I am {props.age} years old! </p>
